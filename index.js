@@ -6,9 +6,6 @@ const authRoutes = require("./routes/authRoutes");
 
 dbConnect();
 
-app.use("/", (req, res) => {
-  res.send("Hello from the server side!!!");
-});
 
 // registering router handlers
 app.use("/api/user", authRoutes);
