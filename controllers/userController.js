@@ -40,7 +40,19 @@ const loginUser = asyncHandler(async (req, res) => {
   }
 });
 
+// GET ALL USERS
+
+const getAllUser = asyncHandler(async (req, res) => {
+  try {
+    const getAllUser = await User.find();
+    res.json(getAllUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
 module.exports = {
   createUser,
   loginUser,
+  getAllUser
 };
