@@ -4,7 +4,7 @@ const dbConnect = require("./config/dbConnect");
 const app = express();
 const morgan = require("morgan");
 const dotenv = require("dotenv").config();
-const authRoutes = require("./routes/authRoutes");
+const authRouter = require("./routes/authRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
 
 dbConnect();
@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // registering router handlers
-app.use("/api/user", authRoutes);
+app.use("/api/user", authRouter);
 
 
 
