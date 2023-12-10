@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const dotenv = require("dotenv").config();
 const authRouter = require("./routes/authRoutes");
 const { notFound, errorHandler } = require("./middlewares/errorHandler");
+const cookieParser = require("cookie-parser");
 
 dbConnect();
 
@@ -14,22 +15,18 @@ app.use(morgan("dev"));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Cookie parser
+app.use(cookieParser());
+
 // parse application/json
 app.use(bodyParser.json());
 
 // registering router handlers
 app.use("/api/user", authRouter);
 
-
-
-
-
 // error handler middleware
-app.use(notFound)
-app.use(errorHandler)
-
-
-
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
